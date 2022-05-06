@@ -1,6 +1,8 @@
 package dev.puppet.mvc.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -25,13 +27,28 @@ public class Demo02ParamsPackageController {
     
     /**
      * 演示通过 @RequestParam 来进行参数封装
-     * @param name
-     * @param age
-     * @return
      */
     @RequestMapping("demoRequestParam")
     public String demoRequestParam(@RequestParam("username") String name, Integer age) {
         System.out.println("控制器方法demoRequestParam执行了：username-" + name + ", age-" + age);
+        return "success";
+    }
+    
+    /**
+     * 演示通过 @RequestBody 来进行参数封装
+     */
+    @RequestMapping("demoRequestBody")
+    public String demoRequestBody(@RequestBody String body) {
+        System.out.println("控制器方法demoRequestBody执行了：body is " + body);
+        return "success";
+    }
+    
+    /**
+     * 演示通过 @RequestBody 来进行参数封装
+     */
+    @RequestMapping("demoPathVariable/{username}/{age}")
+    public String demoPathVariable(@PathVariable String username, @PathVariable int age) {
+        System.out.println("控制器方法demoPathVariable执行了：username-" + username + ", age-" + age);
         return "success";
     }
 }
